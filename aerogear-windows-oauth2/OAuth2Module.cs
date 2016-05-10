@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
 using Windows.Security.Authentication.Web;
+using Windows.Web.Http.Headers;
 
 namespace AeroGear.OAuth2
 {
@@ -60,7 +61,7 @@ namespace AeroGear.OAuth2
             {
                 session = await repository.Read(config.accountId);
             }
-            catch (IOException e)
+            catch (IOException)
             {
                 session = new Session() { accountId = config.accountId };
             }
@@ -105,9 +106,22 @@ namespace AeroGear.OAuth2
             return null;
         }
 
+        public string AuthorizationHeaderString
+        {
+            get
+            {
+                return "Bearer " + session.accessToken;
+            }
+        }
+
         public AuthenticationHeaderValue AuthenticationHeaderValue()
         {
             return new AuthenticationHeaderValue("Bearer", session.accessToken);
+        }
+
+        public HttpCredentialsHeaderValue CredentialHeaderValue()
+        {
+            return new HttpCredentialsHeaderValue("Bearer", session.accessToken);
         }
 
         protected virtual async Task RefreshAccessToken()
