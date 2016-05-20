@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using AeroGear.OAuth2;
 
-namespace AeroGear.OAuth2
+namespace aerogear_windows_oauth2_config
 {
     public class KeycloakOAuth2Module : OAuth2Module
     {
@@ -30,6 +29,7 @@ namespace AeroGear.OAuth2
         {
             KeycloakOAuth2Module module = new KeycloakOAuth2Module();
             await module.init(config);
+            AccountManager.RegisterModule(config, module);
             return module;
         }
 
@@ -53,7 +53,8 @@ namespace AeroGear.OAuth2
                 case 2:
                     stringtoDecode = stringtoDecode + "==";
                     break;
-                case 3: stringtoDecode = stringtoDecode + "=";
+                case 3:
+                    stringtoDecode = stringtoDecode + "=";
                     break;
             }
 

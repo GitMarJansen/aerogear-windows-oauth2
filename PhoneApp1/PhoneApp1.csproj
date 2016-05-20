@@ -161,6 +161,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\aerogear-windows-oauth2-config\aerogear-windows-oauth2-config.csproj">
+      <Project>{c87e6776-1dea-4c4b-abd8-9e968ce214dc}</Project>
+      <Name>aerogear-windows-oauth2-config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\aerogear-windows-oauth2\aerogear-windows-oauth2.csproj">
       <Project>{D70FE93A-FCE4-49FE-A356-05BC5A9CF19E}</Project>
       <Name>aerogear-windows-oauth2</Name>

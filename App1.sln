@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aerogear-windows-oauth2", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneApp1", "PhoneApp1\PhoneApp1.csproj", "{7F63BB9D-3DD2-4DFD-9697-DD24AD5F2DB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aerogear-windows-oauth2-config", "aerogear-windows-oauth2-config\aerogear-windows-oauth2-config.csproj", "{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,18 @@ Global
 		{7F63BB9D-3DD2-4DFD-9697-DD24AD5F2DB0}.Release|x86.ActiveCfg = Release|x86
 		{7F63BB9D-3DD2-4DFD-9697-DD24AD5F2DB0}.Release|x86.Build.0 = Release|x86
 		{7F63BB9D-3DD2-4DFD-9697-DD24AD5F2DB0}.Release|x86.Deploy.0 = Release|x86
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Debug|ARM.Build.0 = Debug|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Debug|x86.Build.0 = Debug|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Release|ARM.Build.0 = Release|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Release|x86.ActiveCfg = Release|Any CPU
+		{C87E6776-1DEA-4C4B-ABD8-9E968CE214DC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

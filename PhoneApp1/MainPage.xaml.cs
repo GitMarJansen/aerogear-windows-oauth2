@@ -1,4 +1,5 @@
 ﻿using AeroGear.OAuth2;
+using aerogear_windows_oauth2_config;
 using Microsoft.Phone.Controls;
 using System;
 using System.Collections.Generic;
@@ -30,14 +31,14 @@ namespace PhoneApp1
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var config = await GoogleConfig.Create("14059167302-t8brd6ipcg4a7muoiucba3rapvlh63su.apps.googleusercontent.com",
-                new List<string>(new string[] { "https://www.googleapis.com/auth/drive" }), "google");
-
-            //var kcconfig = await KeycloakConfig.Create("shoot-third-party", "https://localhost:8443", "shoot-realm");
-            //var config = FacebookConfig.Create("1654557457742519", "9cab3cb953d3194908f44f1764b5b921", 
-            //    new List<string>(new string[] { "photo_upload, publish_actions" }), "facebook");
-
+            var config = await GoogleConfig.Create("14059167302-t8brd6ipcg4a7muoiucba3rapvlh63su.apps.googleusercontent.com", new List<string>(new string[] { "https://www.googleapis.com/auth/drive" }), "google");
             var module = await AccountManager.AddAccount(config);
+
+            //var config = FacebookConfig.Create("1654557457742519", "9cab3cb953d3194908f44f1764b5b921", new List<string>(new string[] { "photo_upload, publish_actions" }), "facebook");
+            //var module = await FacebookOAuth2Module.Create(facebookConfig);
+
+            //var config = await KeycloakConfig.Create("shoot-third-party", "https://localhost:8443", "shoot-realm");
+            //var Module = await KeycloakOAuth2Module.Create(kcconfig);
 
             if (await module.RequestAccessAndContinue())
             {

@@ -37,6 +37,11 @@ namespace AeroGear.OAuth2
             }
         }
 
+        public static void RegisterModule(Config config, OAuth2Module module)
+        {
+            Instance.modules[config.accountId] = module;
+        }
+
         public static async Task<OAuth2Module> AddAccount(Config config)
         {
             if (Instance.modules.ContainsKey(config.accountId))
@@ -49,20 +54,6 @@ namespace AeroGear.OAuth2
                 Instance.modules[config.accountId] = module;
                 return module;
             }
-        }
-
-        public static async Task<OAuth2Module> AddKeyCloak(KeycloakConfig config)
-        {
-            OAuth2Module module = await KeycloakOAuth2Module.Create(config);
-            Instance.modules[config.accountId] = module;
-            return module;
-        }
-
-        public static async Task<OAuth2Module> AddFacebook(FacebookConfig config)
-        {
-            OAuth2Module module = await FacebookOAuth2Module.Create(config);
-            Instance.modules[config.accountId] = module;
-            return module;
         }
 
         public static OAuth2Module GetAccountByName(string name)
@@ -80,66 +71,6 @@ namespace AeroGear.OAuth2
             var module = GetAccountByName((string)args.ContinuationData["name"]);
             await module.ExtractCode(args);
             return module;
-        }
-    }
-
-    public class GoogleConfig : Config
-    {
-        public async static Task<GoogleConfig> Create(string clientId, List<string> scopes, string accountId)
-        {
-            var protocol = await ManifestInfo.GetProtocol();
-            return new GoogleConfig()
-            {
-                baseURL = "https://accounts.google.com/",
-                authzEndpoint = "o/oauth2/auth",
-                redirectURL = protocol + ":/oauth2Callback",
-                accessTokenEndpoint = "o/oauth2/token",
-                refreshTokenEndpoint = "o/oauth2/token",
-                revokeTokenEndpoint = "rest/revoke",
-                clientId = clientId,
-                scopes = scopes,
-                accountId = accountId
-            };
-        }
-    }
-
-    public class KeycloakConfig : Config
-    {
-        public async static Task<KeycloakConfig> Create(string clientId, string host, string realm)
-        {
-            var protocol = await ManifestInfo.GetProtocol();
-            var defaulRealmName = clientId + "-realm";
-            var realmName = realm != null ? realm : defaulRealmName;
-            return new KeycloakConfig() {
-                baseURL = host + "/auth/",
-                authzEndpoint = string.Format("realms/{0}/tokens/login", realmName),
-                redirectURL = protocol + ":/oauth2Callback",
-                accessTokenEndpoint = string.Format("realms/{0}/tokens/access/codes", realmName),
-                clientId = clientId,
-                refreshTokenEndpoint = string.Format("realms/{0}/tokens/refresh", realmName),
-                revokeTokenEndpoint = string.Format("realms/%@/tokens/logout", realmName),
-                accountId = clientId
-            };
-        }
-    }
-
-    public class FacebookConfig : Config
-    {
-        public static FacebookConfig Create(string clientId, string clientSecret, List<string> scopes, string accountId)
-        {
-            return new FacebookConfig()
-            {
-                baseURL = "",
-                authzEndpoint = "https://www.facebook.com/dialog/oauth",
-                redirectURL = "fb" + clientId + "://authorize/",
-                accessTokenEndpoint = "https://graph.facebook.com/oauth/access_token",
-                clientId = clientId,
-                refreshTokenEndpoint = "https://graph.facebook.com/oauth/access_token",
-                clientSecret = clientSecret,
-                revokeTokenEndpoint = "https://www.facebook.com/me/permissions",
-                scopes = scopes,
-                accountId = accountId
-            };
         }
     }
 }
